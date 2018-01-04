@@ -14,7 +14,7 @@ On checking the summary of the data it could be found that 24.3% of the data has
 I used predictive mean mapping (pmm) from Hmisc package using aregImpute() function to fix the problem of missing data. PMM produces imputed values that are much more like real values. If the original variable is skewed, the imputed values will also be skewed
 How predictive mean mapping works? Suppose variable x has missing values and rest of the variables are Z. We estimate a linear regression of x on Z, producing a set of coefficients C. Now we transform C into C’ by making random draws from posterior predictive distribution of C. Using C we predict all the values of x, even for the cases where the data is not missing. For each of the case with missing x,we identify a set of cases with observed x whose predicted values are close to the predicted value for the case with missing data. Now we calculate mean of the close cases or we can randomly draw one of the close case.
 
-# How did you handle unbalanced data?
+# Handle unbalanced data
 88.7% of the data belongs to a single class. The majority class is responded(=”no”) since most customers will choose not to respond. Hence the data is unbalanced. We can either over sample the minority class responded (=”yes”) or under sample the majority class responded(=”no”). I have used a mixed approach wherein we oversample the minority class and under sample the majority class so that majority and minority class are in 0.7 ratio. 0.7 was selected by using multiple value and checking the performance on the validation set. I have used ovun.sample() function from ROSE package for this.
 
 # Testing the model
